@@ -17,42 +17,42 @@ API_KEY = 'APIkeyAPIkeyAPIkeyAPIkey'
 """
 make API request to get all endpoints
 """
-# res = requests.get(
-#     'https://api.glassnode.com/v2/metrics/endpoints',
-#     params={'api_key': glassnodeAPIkey}
-# )
+res = requests.get(
+    'https://api.glassnode.com/v2/metrics/endpoints',
+    params={'api_key': glassnodeAPIkey}
+)
 
-# # convert to pandas dataframe
-# endpointData = pd.read_json(res.text)
+# convert to pandas dataframe
+endpointData = pd.read_json(res.text)
 
-# # review endpoint data
-# print(endpointData.columns)
+# review endpoint data
+print(endpointData.columns)
 
-# # view all endpoint URLs
-# print(endpointData.path)
+# view all endpoint URLs
+print(endpointData.path)
 
-# # view specific endpoint
-# print(endpointData.path[0])
+# view specific endpoint
+print(endpointData.path[0])
 
-# # view specific endpoint tier
-# print(endpointData.tier[0])
+# view specific endpoint tier
+print(endpointData.tier[0])
 
-# # all endpoints for specific tier 
-# print(endpointData.path[endpointData.tier == 1])
+# all endpoints for specific tier 
+print(endpointData.path[endpointData.tier == 1])
 
-# # all endpoints for specific tier AND lower
-# print(endpointData.path[endpointData.tier <= 2])
+# all endpoints for specific tier AND lower
+print(endpointData.path[endpointData.tier <= 2])
 
-# # find index/row number of endpoint by path
-# endpointRow = endpointData[
-#                 endpointData.path == '/v1/metrics/market/price_usd_ohlc']
-# print(endpointRow)
+# find index/row number of endpoint by path
+endpointRow = endpointData[
+                endpointData.path == '/v1/metrics/market/price_usd_ohlc']
+print(endpointRow)
 
-# # supported assets by endpoint // in a DataFrame
-# print(pd.DataFrame(endpointData.assets[endpointRow.index[0]]))
+# supported assets by endpoint // in a DataFrame
+print(pd.DataFrame(endpointData.assets[endpointRow.index[0]]))
 
-# # view data resolution, granularity
-# print(endpointData.resolutions[endpointRow.index[0]])
+# view data resolution, granularity
+print(endpointData.resolutions[endpointRow.index[0]])
 
 """
 make API request to get candlestick data
@@ -165,22 +165,22 @@ make a request to get % supply last active 1+ years ago
 make a request to get pi cycle top data
 """
 
-res = requests.get(
-    'https://api.glassnode.com/v1/metrics/indicators/pi_cycle_top',
-    params={'a': 'BTC', 'api_key': glassnodeAPIkey}
-)
+# res = requests.get(
+#     'https://api.glassnode.com/v1/metrics/indicators/pi_cycle_top',
+#     params={'a': 'BTC', 'api_key': glassnodeAPIkey}
+# )
 
-# convert to pandas dataframe
-piCycleData = pd.read_json(res.text, convert_dates=['t'])
+# # convert to pandas dataframe
+# piCycleData = pd.read_json(res.text, convert_dates=['t'])
 
-# rename columns
-piCycleData = piCycleData.rename(columns={'t': 'Date', 'o': 'movAvgData'})
+# # rename columns
+# piCycleData = piCycleData.rename(columns={'t': 'Date', 'o': 'movAvgData'})
 
-# set index to date
-piCycleData = piCycleData.set_index('Date')
+# # set index to date
+# piCycleData = piCycleData.set_index('Date')
 
-# turn dictionaries into individual series
-piCycleData = piCycleData.movAvgData.apply(pd.Series)
+# # turn dictionaries into individual series
+# piCycleData = piCycleData.movAvgData.apply(pd.Series)
 
-# plot address data
-piCycleData.plot()
+# # plot address data
+# piCycleData.plot()
