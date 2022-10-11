@@ -4,6 +4,8 @@ Glassnode API // Full Pytohn Tutorial
 author: Adam Getbags
 """
 
+#pip install plotly
+
 import json
 import requests
 import pandas as pd
