@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """
-Glassnode API // Full Pytohn Tutorial 
+Glassnode API // Full Python Tutorial 
 author: Adam Getbags
 """
 
